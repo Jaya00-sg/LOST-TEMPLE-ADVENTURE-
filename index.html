@@ -712,8 +712,6 @@
             ),
             "full"
           );
-
-
           currentRoomCode =
             selectedRoomCode;
 
@@ -1168,6 +1166,7 @@ startGameBtn.onclick = async function () {
     if (!room) return;
 
     if (room.status === "starting") {
+      document.querySelector(".screen").style.display = "none";
 
       document.getElementById(
         "lobbyOverlay"
