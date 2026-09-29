@@ -1533,7 +1533,55 @@ startGameBtn.onclick = async function () {
 
 const mapBtn =
   document.getElementById("mapBtn");
+const startLevelBtn =
+  document.getElementById("startLevelBtn");
+    startLevelBtn.onclick = async function () {
 
+  if (currentPlayer !== "player1") {
+    alert("Only Player 1 can start the level.");
+    return;
+  }
+
+  await set(
+    ref(
+      db,
+      "rooms/" +
+      currentRoomCode +
+      "/gameLevel"
+    ),
+    1
+  );
+
+};
+    onValue(
+  ref(db, "rooms"),
+  (snapshot) => {
+
+    if (!currentRoomCode) return;
+
+    const rooms = snapshot.val();
+
+    const room =
+      rooms
+        ? rooms[currentRoomCode]
+        : null;
+
+    if (!room) return;
+
+    if (room.gameLevel === 1) {
+
+      document.getElementById(
+        "stage1"
+      ).style.display = "block";
+
+      document.getElementById(
+        "startLevelBtn"
+      ).style.display = "none";
+
+    }
+
+  }
+);
 const stage1 =
   document.getElementById("stage1");
 
