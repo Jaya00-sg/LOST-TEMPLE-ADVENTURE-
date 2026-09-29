@@ -296,6 +296,42 @@
   >
 
     <h1>🌲 Lost Forest</h1>
+    <div
+  id="characterSelect"
+  style="
+    position:fixed;
+    inset:0;
+    background:#101820;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  "
+>
+  <div
+    style="
+      background:#18242d;
+      padding:30px 20px;
+      border-radius:20px;
+      width:85%;
+      max-width:400px;
+    "
+  >
+
+    <h2>👤 CHOOSE YOUR PLAYER</h2>
+
+    <p>Select your character</p>
+
+    <button id="maleBtn">
+      👨 MALE
+    </button>
+
+    <button id="femaleBtn">
+      👩 FEMALE
+    </button>
+
+  </div>
+    </div>
 
     <p id="gamePlayer">Player</p>
 <div
@@ -1241,6 +1277,57 @@
 
       }
     );
+    /* CHARACTER SELECTION */
+
+const characterSelect =
+  document.getElementById("characterSelect");
+
+const maleBtn =
+  document.getElementById("maleBtn");
+
+const femaleBtn =
+  document.getElementById("femaleBtn");
+
+
+function chooseCharacter(character) {
+
+  if (!currentRoomCode || !currentPlayer) {
+    alert("Please enter the room first.");
+    return;
+  }
+
+  set(
+    ref(
+      db,
+      "rooms/" +
+      currentRoomCode +
+      "/" +
+      currentPlayer +
+      "Character"
+    ),
+    character
+  );
+
+  characterSelect.style.display =
+    "none";
+
+  gamePlayer.innerText =
+    character === "male"
+      ? "👨 Player"
+      : "👩 Player";
+}
+
+
+maleBtn.onclick =
+  function () {
+    chooseCharacter("male");
+  };
+
+
+femaleBtn.onclick =
+  function () {
+    chooseCharacter("female");
+  };
 /* MULTIPLAYER MOVEMENT */
 
 const player1Character =
@@ -1442,20 +1529,19 @@ startGameBtn.onclick = async function () {
 );
 
 
+/* VIEW MAP */
+
+const mapBtn =
+  document.getElementById("mapBtn");
+
+const stage1 =
+  document.getElementById("stage1");
+
 mapBtn.onclick = function () {
 
-  document.getElementById(
-    "stage1"
-  ).style.display = "block";
+  stage1.style.display = "block";
 
   mapBtn.style.display = "none";
-
-};
-
-
-startLevelBtn.onclick = function () {
-
-  alert("🎮 LEVEL 1 STARTED!");
 
 };
     /* LEAVE ROOM */
