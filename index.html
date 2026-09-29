@@ -1133,7 +1133,26 @@
       }
     );
 
+/* START GAME */
 
+startGameBtn.onclick = async function () {
+
+  if (!currentRoomCode) {
+    alert("You are not inside a room.");
+    return;
+  }
+
+  await set(
+    ref(
+      db,
+      "rooms/" +
+      currentRoomCode +
+      "/status"
+    ),
+    "starting"
+  );
+
+};
     /* LEAVE ROOM */
 
     leaveRoomBtn.onclick =
