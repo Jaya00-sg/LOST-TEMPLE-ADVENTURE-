@@ -781,7 +781,7 @@
         if (!rooms) {
 
           roomList.innerHTML =
-            "<p>Firebase connected, but no rooms found.</p>"
+            "<p>No rooms available.</p>";
 
           return;
 
@@ -1153,6 +1153,30 @@ startGameBtn.onclick = async function () {
   );
 
 };
+    onValue(
+  ref(db, "rooms"),
+  (snapshot) => {
+
+    if (!currentRoomCode) return;
+
+    const rooms = snapshot.val();
+    const room = rooms
+      ? rooms[currentRoomCode]
+      : null;
+
+    if (!room) return;
+
+    if (room.status === "starting") {
+
+      document.getElementById(
+        "lobbyOverlay"
+      ).style.display = "none";
+
+      alert("🎮 Game Starting!");
+
+    }
+  }
+);
     /* LEAVE ROOM */
 
     leaveRoomBtn.onclick =
