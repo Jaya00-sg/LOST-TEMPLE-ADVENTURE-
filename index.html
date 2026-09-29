@@ -1172,7 +1172,12 @@ startGameBtn.onclick = async function () {
         "lobbyOverlay"
       ).style.display = "none";
 
-      alert("🎮 Game Starting!");
+      document.getElementById("gameScreen").style.display = "block";
+
+document.getElementById("gamePlayer").innerText =
+  currentPlayer === "player1"
+    ? "👤 Player 1"
+    : "👤 Player 2";
 
     }
   }
@@ -1286,4 +1291,13 @@ startGameBtn.onclick = async function () {
   </script>
 
 </body>
+  <div id="gameScreen" style="display:none; min-height:100vh; background:#18251b; color:white; padding:20px;">
+
+  <h1>🏛️ Lost Temple Adventure</h1>
+
+  <p>🎮 Level 1</p>
+
+  <p id="gamePlayer">Player</p>
+
+  </div>
 </html>("
