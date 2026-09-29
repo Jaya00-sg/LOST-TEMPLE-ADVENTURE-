@@ -281,7 +281,69 @@
     </div>
 
   </div>
+      <!-- GAME SCREEN -->
 
+  <div
+    id="gameScreen"
+    style="
+      display:none;
+      min-height:100vh;
+      background:#18351f;
+      color:white;
+      padding:20px;
+      box-sizing:border-box;
+    "
+  >
+
+    <h1>🌲 Lost Forest</h1>
+
+    <p id="gamePlayer">Player</p>
+
+    <div
+      style="
+        margin:30px auto;
+        max-width:350px;
+        padding:25px;
+        background:#254d2c;
+        border-radius:15px;
+      "
+    >
+
+      <h2>🗺️ You found a map!</h2>
+
+      <p>
+        The map shows the route to the ancient temple.
+      </p>
+
+      <button
+        id="mapBtn"
+        style="padding:14px 25px;font-size:18px;"
+      >
+        🗺️ VIEW MAP
+      </button>
+
+    </div>
+
+    <div id="stage1" style="display:none;">
+
+      <h2>🏛️ STAGE 1</h2>
+
+      <h3>🌿 LEVEL 1</h3>
+
+      <p>
+        Explore the forest and find the temple entrance.
+      </p>
+
+      <button
+        id="startLevelBtn"
+        style="padding:14px 25px;font-size:18px;"
+      >
+        ▶️ START LEVEL 1
+      </button>
+
+    </div>
+
+  </div>
 
   <script type="module">
 
