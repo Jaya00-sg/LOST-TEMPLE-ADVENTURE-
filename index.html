@@ -1168,20 +1168,33 @@ startGameBtn.onclick = async function () {
 
     if (room.status === "starting") {
 
-      document.getElementById(
-        "lobbyOverlay"
-      ).style.display = "none";
+  document.getElementById("lobbyOverlay").style.display = "none";
 
-      document.getElementById("gameScreen").style.display = "block";
+  document.getElementById("createOverlay").style.display = "none";
 
-document.getElementById("gamePlayer").innerText =
-  currentPlayer === "player1"
-    ? "👤 Player 1"
-    : "👤 Player 2";
+  document.getElementById("joinOverlay").style.display = "none";
 
-    }
+  document.getElementById("gameScreen").style.display = "block";
+
+  document.getElementById("gamePlayer").innerText =
+    currentPlayer === "player1"
+      ? "👤 Player 1"
+      : "👤 Player 2";
+  }
   }
 );
+    mapBtn.onclick = function () {
+
+  document.getElementById("stage1").style.display = "block";
+
+  mapBtn.style.display = "none";
+
+};
+    startLevelBtn.onclick = function () {
+
+  alert("🎮 LEVEL 1 STARTED!");
+
+};
     /* LEAVE ROOM */
 
     leaveRoomBtn.onclick =
@@ -1291,13 +1304,37 @@ document.getElementById("gamePlayer").innerText =
   </script>
 
 </body>
-  <div id="gameScreen" style="display:none; min-height:100vh; background:#18251b; color:white; padding:20px;">
+  <div id="gameScreen" style="display:none; min-height:100vh; background:#18351f; color:white; padding:20px;">
 
-  <h1>🏛️ Lost Temple Adventure</h1>
-
-  <p>🎮 Level 1</p>
+  <h1>🌲 Lost Forest</h1>
 
   <p id="gamePlayer">Player</p>
+
+  <div style="margin:30px auto; max-width:350px; padding:25px; background:#254d2c; border-radius:15px;">
+
+    <h2>🗺️ You found a map!</h2>
+
+    <p>The map shows the route to the ancient temple.</p>
+
+    <button id="mapBtn" style="padding:14px 25px; font-size:18px;">
+      🗺️ VIEW MAP
+    </button>
+
+  </div>
+
+  <div id="stage1" style="display:none;">
+
+    <h2>🏛️ STAGE 1</h2>
+
+    <h3>🌿 LEVEL 1</h3>
+
+    <p>Explore the forest and find the temple entrance.</p>
+
+    <button id="startLevelBtn" style="padding:14px 25px; font-size:18px;">
+      ▶️ START LEVEL 1
+    </button>
+
+  </div>
 
   </div>
 </html>("
