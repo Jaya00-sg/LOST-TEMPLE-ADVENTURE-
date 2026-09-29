@@ -298,7 +298,56 @@
     <h1>🌲 Lost Forest</h1>
 
     <p id="gamePlayer">Player</p>
+<div
+  id="forestArea"
+  style="
+    position:relative;
+    width:100%;
+    max-width:500px;
+    height:400px;
+    margin:20px auto;
+    background:#315f35;
+    border:3px solid #8b6b3f;
+    border-radius:15px;
+    overflow:hidden;
+  "
+>
 
+  <div
+    id="player1Character"
+    style="
+      position:absolute;
+      left:50px;
+      top:150px;
+      font-size:40px;
+    "
+  >
+    🧑
+  </div>
+
+  <div
+    id="player2Character"
+    style="
+      position:absolute;
+      left:200px;
+      top:150px;
+      font-size:40px;
+    "
+  >
+    👩
+  </div>
+
+</div>
+
+<div>
+  <button id="upBtn">⬆️</button>
+</div>
+
+<div>
+  <button id="leftBtn">⬅️</button>
+  <button id="downBtn">⬇️</button>
+  <button id="rightBtn">➡️</button>
+</div>
     <div
       style="
         margin:30px auto;
@@ -1192,7 +1241,143 @@
 
       }
     );
+/* MULTIPLAYER MOVEMENT */
 
+const player1Character =
+  document.getElementById("player1Character");
+
+const player2Character =
+  document.getElementById("player2Character");
+
+const upBtn =
+  document.getElementById("upBtn");
+
+const downBtn =
+  document.getElementById("downBtn");
+
+const leftBtn =
+  document.getElementById("leftBtn");
+
+const rightBtn =
+  document.getElementById("rightBtn");
+
+
+let myX = currentPlayer === "player1" ? 50 : 200;
+let myY = 150;
+
+
+function updateMyPosition() {
+
+  const playerPath =
+    currentPlayer === "player1"
+      ? "player1Position"
+      : "player2Position";
+
+  set(
+    ref(
+      db,
+      "rooms/" +
+      currentRoomCode +
+      "/" +
+      playerPath
+    ),
+    {
+      x: myX,
+      y: myY
+    }
+  );
+
+}
+
+
+function movePlayer(dx, dy) {
+
+  myX += dx;
+  myY += dy;
+
+  if (myX < 0) myX = 0;
+  if (myY < 0) myY = 0;
+  if (myX > 430) myX = 430;
+  if (myY > 330) myY = 330;
+
+  const myCharacter =
+    currentPlayer === "player1"
+      ? player1Character
+      : player2Character;
+
+  myCharacter.style.left =
+    myX + "px";
+
+  myCharacter.style.top =
+    myY + "px";
+
+  updateMyPosition();
+
+}
+
+
+upBtn.onclick =
+  () => movePlayer(0, -20);
+
+downBtn.onclick =
+  () => movePlayer(0, 20);
+
+leftBtn.onclick =
+  () => movePlayer(-20, 0);
+
+rightBtn.onclick =
+  () => movePlayer(20, 0);
+
+
+/* SEE OTHER PLAYER */
+
+onValue(
+  ref(db, "rooms"),
+  (snapshot) => {
+
+    if (!currentRoomCode) return;
+
+    const rooms = snapshot.val();
+
+    const room =
+      rooms
+        ? rooms[currentRoomCode]
+        : null;
+
+    if (!room) return;
+
+
+    if (
+      currentPlayer === "player1"
+      &&
+      room.player2Position
+    ) {
+
+      player2Character.style.left =
+        room.player2Position.x + "px";
+
+      player2Character.style.top =
+        room.player2Position.y + "px";
+
+    }
+
+
+    if (
+      currentPlayer === "player2"
+      &&
+      room.player1Position
+    ) {
+
+      player1Character.style.left =
+        room.player1Position.x + "px";
+
+      player1Character.style.top =
+        room.player1Position.y + "px";
+
+    }
+
+  }
+);
 /* START GAME */
 
 startGameBtn.onclick = async function () {
