@@ -688,11 +688,10 @@ document.getElementById("openingCreateBtn").onclick = function () {
 
     /* CANCEL CREATE */
 
-    cancelBtn.onclick = function () {
-
-      createOverlay.style.display = "none";
-
-    };
+    cancelCreateBtn.onclick = function () {
+  createOverlay.style.display = "none";
+  document.getElementById("loadingScreen").style.display = "flex";
+};
 
 
     /* ROOM CODE */
