@@ -82,17 +82,6 @@
 
   overflow-y: auto;
     }
-    
-
-    .box {
-  background: rgba(15, 30, 38, 0.72);
-  width: 85%;
-  max-width: 340px;
-  margin: 20px auto;
-  padding: 14px;
-  border-radius: 18px;
-  box-sizing: border-box;
-}
 
 .box button {
   width: 90%;
@@ -281,11 +270,7 @@ hr {
             placeholder="Enter Password"
           >
 
-          <button
-            id="passwordEye"
-            class="eyeBtn"
-            type="button"
-          >👁️</button>
+          
 
         </div>
 
@@ -603,8 +588,7 @@ document.getElementById("openingCreateBtn").onclick = function () {
     const roomPassword =
       document.getElementById("roomPassword");
 
-    const passwordEye =
-      document.getElementById("passwordEye");
+    
 
     const createRoomBtn =
       document.getElementById("createRoomBtn");
@@ -699,25 +683,7 @@ document.getElementById("openingCreateBtn").onclick = function () {
 };
 
 
-    /* PASSWORD EYE */
-
-    passwordEye.onclick = function () {
-
-      if (roomPassword.type === "password") {
-
-        roomPassword.type = "text";
-
-        passwordEye.innerText = "🙈";
-
-      } else {
-
-        roomPassword.type = "password";
-
-        passwordEye.innerText = "👁️";
-
-      }
-
-    };
+    
 
 
     /* CANCEL CREATE */
