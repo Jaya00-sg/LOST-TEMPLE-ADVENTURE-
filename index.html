@@ -85,21 +85,24 @@
     
 
     .box {
-  background: rgba(15, 30, 38, 0.82);
+  background: rgba(15, 30, 38, 0.72);
   width: 85%;
-  max-width: 380px;
-  margin: 35px auto;
-  padding: 18px;
+  max-width: 340px;
+  margin: 20px auto;
+  padding: 14px;
   border-radius: 18px;
   box-sizing: border-box;
-    }
-    .box button {
+}
+
+.box button {
   width: 90%;
-  padding: 12px;
-  margin: 6px auto;
-  font-size: 16px;
+  padding: 10px;
+  margin: 5px auto;
+  font-size: 15px;
   display: block;
-    }
+  background: rgba(255, 255, 255, 0.78);
+  color: #111;
+}
 
     input {
       width: 90%;
@@ -683,23 +686,17 @@ document.getElementById("openingCreateBtn").onclick = function () {
     /* OPEN ROOM */
 
     openRoomBtn.onclick = function () {
-
-      selectedRoomType = "open";
-
-      privatePassword.style.display = "none";
-
-    };
+  selectedRoomType = "open";
+  privatePassword.style.display = "none";
+};
 
 
     /* PRIVATE ROOM */
 
     privateRoomBtn.onclick = function () {
-
-      selectedRoomType = "private";
-
-      privatePassword.style.display = "block";
-
-    };
+  selectedRoomType = "private";
+  privatePassword.style.display = "block";
+};
 
 
     /* PASSWORD EYE */
