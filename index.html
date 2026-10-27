@@ -1729,7 +1729,15 @@ mapBtn.onclick = function () {
             "lobbyOverlay"
           ).style.display =
             "none";
+document.getElementById(
+  "loadingScreen"
+).style.display = "flex";
 
+document.querySelector(".screen").style.display = "block";
+
+document.getElementById(
+  "gameScreen"
+).style.display = "none";
 
           readyBtn.innerText =
             "✅ READY";
